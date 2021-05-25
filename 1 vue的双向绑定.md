@@ -98,7 +98,7 @@
    3. 深拷贝和浅拷贝
 
       1. JSON.stringify和JSON.parse会有什么问题？
-   
+
       ```
       function deepClone(obj) {
       	let result
@@ -114,28 +114,31 @@
       	return result
    }
       ```
-   
+
    4. Promise
       1. Promise解决了 什么问题？还有哪些方法也能解决？
          1. 异步调用
          2. callback，genetator，async/await
    2. Promise在事件循环中的使用
-      3. Promise在业界的实现有哪些？
-
+      
+   3. Promise在业界的实现有哪些？
+      
    5. 数组去重
-   
+
       1. Set
       2. 遍历
    3. filter，判断在数组中的第一个索引是不是当前的索引
-      4. 利用Map，不能用相同key值
-
+      
+   4. 利用Map，不能用相同key值
+      
    6. 数组扁平化
-   
-   1. arr.flat(Infinity)
-      2. concat也会拍平数组
 
+   1. arr.flat(Infinity)
+      
+   2. concat也会拍平数组
+      
    7. 递归，排序
-   
+
       ```
       var arr = [29,45,51,68,72,97];
       //外层循环，控制趟数，每一次找到一个最大值
@@ -275,6 +278,28 @@
 
    4. compose
 
+      ```js
+      function compose(...args) {
+          return function (...args2) {
+              let result;
+              while (args.length) {
+                  result = args.shift()(...args2)
+              }
+              return result
+          }
+      }
+      
+      function add(x, y) {
+          console.log(this);
+          return x + y
+      }
+      
+      function toString(s) {
+          return s.toString()
+      }
+      let com = compose(toString, add)
+      ```
+
    5. new 
 
       ```js
@@ -288,14 +313,70 @@
 6. 其他
 
    1. 基本的git指令
+
+      1. `git branch -a --contains commitId`
+      2. `git stash git stash pop`
+      3. `git log`
+      4. git复制本地分支，推送到新的远程分支
+         1. `git checkout -b newBranch`
+         2. `git push origin newBranch`
+         3. `git branch --set-upstream-to=origin/newBranch`
+
    2. webpack
+
    3. nginx
+
    4. docker
+
    5. http协议
+
       1. https与http有什么区别
-   6. localstroage，sessionstroagehe，cookie
-   7. 如何解决跨域
-   8. 安全相关 XSS 及解决方案
+      2. http状态码
+
+   6. localstroage，sessionstroage，cookie，session
+
+      1. localstroage，sessionstroagehe，cookie，session有什么不同
+
+         |                | 位置   | 大小 | 生命周期                                           |
+         | -------------- | ------ | ---- | -------------------------------------------------- |
+         | cookie         | 浏览器 | 4K   | 不设置过期时间，浏览器关闭；设置过期时间，时间到期 |
+         | session        | 服务器 |      |                                                    |
+         | localstroage   | 浏览器 | 5MB  | 永久                                               |
+         | sessionstroage | 浏览器 | 5MB  | 页面关闭                                           |
+
+      2. cookie有哪些属性？如何设置，删除cookie，如何禁止js操作cookie
+
+         1. cookie的属性有：name，value，domain，path，expires/max-age，size，http-only，secure，samesite，sameparty，priority
+
+         2. 作用是：
+
+            domain：设置可以访问该cookie的域名；
+
+            path：设置可以访问该cookie的页面路径；
+
+            expires/max-age：设置cookie的过期时间；
+
+            http-only：为true时，只会在http请求头中携带cookie，禁止通过js操作cookie；
+
+            secure：设置是否通过https来传递此cookie；
+
+            samesite：是否禁止第三方cookie，参数有strict，lax，none
+
+   7. 如何解决跨域 （协议+域名+端口"三者相同才不算跨域）
+
+      1. jsonp
+      2. window.domain,iframe
+      3. postMessage
+      4. CORS
+      5. nginx代理跨域
+      6. nodejs中间件代理跨域
+      7. Vue项目中devServer的proxy中设置
+
+   8. 安全相关
+
+      1. XSS 及解决方案
+      2. CORS攻击
+
    9. 发布订阅模式
 
 7. 算法
