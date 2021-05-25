@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent {
+            width: 100px;
+            height: 100px;
+            background: #bbb;
+        }
+        #child {
+            width: 50px;
+            height: 50px;
+            background: #7eb;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="child"></div>
+    </div>
+
+    <ul id="ulParent">
+        <li class="li1 li">111</li>
+        <li class="li2">222</li>
+        <li class="li3">333</li>
+        <li class="li4">444</li>
+    </ul>
+
+    <script>
+        let parentEle = document.getElementById('parent')
+        let childEle = document.getElementById('child')
+
+        parentEle.addEventListener('click', function() {
+            console.log('父级事件冒泡');
+        }, false)
+        parentEle.addEventListener('click', function() {
+            console.log('父级事件捕获');
+        }, true)
+        childEle.addEventListener('click', function() {
+            console.log('子级事件冒泡');
+        }, false)
+        childEle.addEventListener('click', function() {
+            console.log('子级事件捕获');
+        }, true)
+
+        let ulELe = document.getElementById('ulParent')
+        ulELe.addEventListener('click', function(e) {
+            // 兼容ie 
+            let event = e || window.event
+            let target = event.target || event.srcElement
+            console.log(target.classList);
+        })
+
+        // 判断是否是ie浏览器 
+        // 1.+[1,]
+        // 2.!+"1"
+        // 3.!!(window.attachEvent && navigator.userAgent.indexOf('Opera') === -1)
+        // 4.!!(!window.addEventListener&& navigator.userAgent.indexOf('Opera') === -1)
+        // 5.!!(document.all && navigator.userAgent.indexOf('Opera') === -1) 
+
+    </script>
+</body>
+</html>
