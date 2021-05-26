@@ -173,16 +173,20 @@
 
       2. commonjs 及 ES6 Module 的区别
 
-      3. 事件捕获，事件冒泡
+         |          | 导出方式                             | 导入方式               | 导出的值                                                     |
+         | -------- | ------------------------------------ | ---------------------- | ------------------------------------------------------------ |
+         | commonJs | exports.xx = ;  module.exports = xxx | let xx = require('..') | 可以修改引用类型，是一种浅拷贝，数值类型修改不会影响原js的值 |
+         | ESModule | export xx;export edfault xx          | import xx from '...'   | 可修改引用类型，不可修改值类型                               |
+
+      3. 事件捕获，事件冒泡，事件代理
 
       4. axios的get，post
-
-      5. 强缓存与协商缓存
 
 4. Vue
 
    1. Vue的生命周期
    2. 父子组件的生命周期
+      
       1. 父子组件的渲染顺序（同步引入还是异步）
    3. Vue双向绑定的原理
    4. Vue组件之间传值（父子、兄弟、多层级）
@@ -215,7 +219,14 @@
       3. actions为何要先触发mutations，而不是直接触发修改state
       4. 为什么mutations里不能使用异步
    9. Vue-router
+      
       1. 哈希模式和history模式的原理
+      
+         1. hash模式，通过onhashchange监听路由的变化
+      
+         2. history模式，基于History Api，history.pushState history.replaceState 
+      
+            通过popstate监听路由的变化
    10. Less,sass
 
 5. 手写
@@ -331,7 +342,54 @@
    5. http协议
 
       1. https与http有什么区别
+
       2. http状态码
+
+         1. 101 切换协议时遇到，比如使用websocket
+         2. 200 成功
+         3. 301 永久重定向
+         4. 302 临时重定向
+         5. 304 使用缓存
+         6. 401 权限错误
+         7. 404 找不到资源
+         8. 405 请求方法错误
+         9. 500 服务器错误
+         10. 502，504 代理错误
+
+      3. 强缓存与协商缓存
+
+         1. 强缓存
+
+            1. Expires: new Date('2021-5-21 17:12:40').toUTCString() 
+            2. Cache-Control:public, private max-age=31536000 max-age、s-maxage no chache
+
+         2. 协商缓存
+
+            1. ```js
+               // 获取mtime和ifModifiedSince，比较
+               const { mtime } = fs.statSync('./static/images/banana.jpeg')
+               res.setHeader('last-modified', mtime.toUTCString())
+               const ifModifiedSince = req.headers['if-modified-since']
+               if (ifModifiedSince === mtime.toUTCString()) {
+                   // 缓存生效
+                   res.statusCode = 504
+                   res.end()
+                   return
+               }
+               ```
+
+            2. ```js
+               // 请求头设置etag，在响应头查找if-none-match,比较
+               const eTagContent = eTag(data)
+               res.setHeader('etag', eTagContent)
+               const ifNoneMatch = req.headers['if-none-match']
+               if (ifNoneMatch == eTagContent) {
+                  // 缓存生效
+                  res.statusCode = 304
+                  res.end()
+                  return
+               }
+               ```
 
    6. localstroage，sessionstroage，cookie，session
 

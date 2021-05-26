@@ -1,6 +1,8 @@
-let b = 1;
+let obj = {
+  b: 1
+};
+module.exports = obj
 
-exports.b = b;
-// module.export = {
-//     b: b
-// }
+setTimeout(() => {
+  console.log(obj);
+}, 2000)
