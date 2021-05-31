@@ -4,5 +4,5 @@ let obj = {
 module.exports = obj
 
 setTimeout(() => {
-  console.log(obj);
+  obj.b = 2
 }, 2000)

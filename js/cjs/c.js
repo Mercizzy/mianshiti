@@ -1,8 +1,7 @@
-
+console.log(111);
 let a = 10
-
-exports.a = a;
-
 setTimeout(() => {
-  console.log(a);
-}, 2000)
+  a = 11
+}, 2)
+module.exports.a = a
+
