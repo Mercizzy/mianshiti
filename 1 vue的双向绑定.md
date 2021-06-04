@@ -127,16 +127,16 @@
 
       1. Set
       2. 遍历
-   3. filter，判断在数组中的第一个索引是不是当前的索引
+      3. filter，判断在数组中的第一个索引是不是当前的索引
       
-   4. 利用Map，不能用相同key值
+      4. 利用Map，不能用相同key值
       
-   6. 数组扁平化
+   8. 数组扁平化
 
-   1. arr.flat(Infinity)
-      
-   2. concat也会拍平数组
-      
+      1. arr.flat(Infinity)
+         
+      2. concat也会拍平数组
+   
    7. 递归，排序
 
       ```
