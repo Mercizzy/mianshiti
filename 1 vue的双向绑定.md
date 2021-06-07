@@ -260,14 +260,15 @@
       }
       // 节流
       function throttle(fn, wait) {
-          let timer, previous = 0
+          let timer, result
           return (...args) => {
               if (!timer) {
                   timer = setTimeout(() => {
                       timer = null
-                      fn(...args)
+                      result = fn(...args)
                   }, wait)
               }
+            	return result
           }
       }
       ```
@@ -436,6 +437,10 @@
       2. CORS攻击
 
    9. 发布订阅模式
+
+      ```js
+      
+      ```
 
    10. 为何使用websocket
 

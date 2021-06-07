@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // this指向
+
+        let a = () => {
+            console.log(this);
+        }
+        a()
+
+        let b = function () {
+            console.log(this);
+        }
+        b()
+
+        // 类中的this指向始终是实例对象
+        // https://blog.csdn.net/qq_36968599/article/details/114341210
+        class C {
+            age = () => {
+                console.log(this);
+            }
+            name() {
+                console.log(this);
+            }
+        }
+        let c = new C()
+        c.age()
+        let m = c.age
+        m()
+        c.name()
+        let n = c.name
+        n()
+
+    </script>
+</body>
+
+</html>

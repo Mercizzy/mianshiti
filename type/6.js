@@ -1,0 +1,2 @@
+abbabc -> bc
+aaa -> a
