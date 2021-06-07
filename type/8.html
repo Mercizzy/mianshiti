@@ -11,7 +11,7 @@
 <body>
     <script>
         // this指向
-
+        // "use strict";
         let a = () => {
             console.log(this);
         }
@@ -24,6 +24,8 @@
 
         // 类中的this指向始终是实例对象
         // https://blog.csdn.net/qq_36968599/article/details/114341210
+        // 箭头函数的this指向与它定义的时候所处的作用域有关
+        // 普通函数的this是动态绑定的
         class C {
             age = () => {
                 console.log(this);
