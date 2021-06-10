@@ -136,25 +136,91 @@ class MyPromise {
 }
 
 
-let p = new MyPromise((res, rej) => {
-    res()
-})
-p.then(res => {
-    console.log(111);
-}).then(res => {
-    console.log(res);
-}).then(res => {
-    return new MyPromise((res, rej) => {
-        setTimeout(() => {
-            console.log(222);
-            res(4444)
-        }, 500)
-    })
-}).then((res) => {
-    console.log(res);
-})
+// let p = new MyPromise((res, rej) => {
+//     res()
+// })
+// p.then(res => {
+//     console.log(111);
+// }).then(res => {
+//     console.log(res);
+// }).then(res => {
+//     return new MyPromise((res, rej) => {
+//         setTimeout(() => {
+//             console.log(222);
+//             res(4444)
+//         }, 500)
+//     })
+// }).then((res) => {
+//     console.log(res);
+// })
 
 // let p2 = new MyPromise((res, rej) => {
 //     res("success")
 //   })
 // p2.then().then("b").then(value => console.log(value))
+
+// let p1 = new Promise((res, rej) => {
+//     res(1)
+// })
+
+// setTimeout(() => {
+//     console.log('settimeout');
+// }, 0)
+// p1.then((data) => {
+//     console.log('p1', data);
+//     return data
+// }).then((data) => {
+//     // setTimeout(() => {
+//     //     console.log('p2', data);
+//     //     return data
+//     // })
+//     return new Promise((res, rej) => {
+//         console.log('p2', data);
+//         res(data)
+//     })
+// }).then((data) => {
+//     console.log('p3', data);
+//     return data
+// })
+
+// setTimeout(() => {
+//     console.log('settimeout');
+// }, 0)
+// let p1 = new MyPromise((res, rej) => {
+//     res('p1')
+// })
+// p1.then((data) => console.log(data))
+
+// Promise.resolve(1)
+//   .then(2)
+//   .then(Promise.resolve(3))
+//   .then(console.log)
+
+// const promise1 = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve('success')
+//     }, 1000)
+//   })
+//   const promise2 = promise1.then(() => {
+//     throw new Error('error!!!')
+//   })
+//   console.log('promise1', promise1)
+//   console.log('promise2', promise2)
+//   setTimeout(() => {
+//     console.log('promise1', promise1)
+//     console.log('promise2', promise2)
+//   }, 2000)
+
+
+// Promise.resolve().then(() => {
+//     return new Error('error!!!')
+//   }).then(res => {
+//     console.log("then: ", res)
+//   }).catch(err => {
+//     console.log("catch: ", err)
+//   })
+
+let arr = [1,2,3,4,5]
+for (let i=0; i<arr.length; i++) {
+    console.log(arr[i]);
+}
