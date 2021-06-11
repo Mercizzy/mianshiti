@@ -1,4 +1,5 @@
 // abbac->c
+// 消除字符串中的b，以及相邻的字符，不得使用replace等字符串方法
 
 function xxl(str) {
     if (str.length < 2) {

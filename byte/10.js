@@ -1,0 +1,1 @@
+// {}, map, weakMap 的区别
