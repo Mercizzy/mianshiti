@@ -31,3 +31,20 @@ function deepClone(obj) {
 
 // JSON.stringify/JSON.parse
 // 缺点 存在 Date，正则，function，NAN，Infinity，-Infinity，不可枚举属性，循环引用 时，都会有问题
+console.log('-----------------------------------------------------');
+const obj2 = {
+    a: new Date(),
+    b: /1/g,
+    c: function() { console.log(1111); },
+    d: NaN,
+    e: undefined,
+    f: Infinity,
+    g: -Infinity,
+    [Symbol('for')]: 'symbol',
+    h: obj3,
+};
+var obj3 = {
+    i: obj2,
+};
+console.log(obj2);
+console.log(JSON.parse(JSON.stringify(obj2)));

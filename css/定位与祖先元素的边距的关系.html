@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            margin: 10px;
+            border: 5px solid red;
+        }
+        .inner1 {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 20px;
+            height: 20px;
+            background: greenyellow;
+        }
+        .div2 {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            padding: 50px;
+            margin: 50px;
+            border: 5px solid red;
+        }
+        .inner2 {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 20px;
+            height: 20px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 绝对定位
+         如果祖先元素是块级元素，包含块则设置为该元素的内边距边界。
+         如果祖先元素是行内元素，包含块则设置为该祖先元素的内容边界。
+    -->
+    <div class="div1">
+        <div class="inner1"></div>
+    </div>
+    <hr />
+    <span class="div2">
+        <div class="inner2"></div>
+    </span>
+</body>
+</html>
