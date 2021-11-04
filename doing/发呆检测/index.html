@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="getPermission()">i am agree</button>
+  <button>11111111</button>
+  <script>
+    function getPermission() {
+      if ('IdleDetector' in window) {
+        // Idle Detector API supported
+        console.log('Idle Detector API supported');
+      } else {
+        return 
+      }
+      IdleDetector.requestPermission().then((state) => {
+        if (state !== 'granted') {
+          // Need to request permission first.
+          return console.log('Idle detection permission not granted.');
+        } else {
+          initIdleDetector()
+        }
+      });
+    }
+    async function initIdleDetector() {
+      try {
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        const idleDetector = new IdleDetector();
+        idleDetector.addEventListener('change', () => {
+          const userState = idleDetector.userState;
+          const screenState = idleDetector.screenState;
+          console.log(`Idle change: ${userState}, ${screenState},time: ${new Date()}`);
+        });
+
+        await idleDetector.start({
+          threshold: 60000,
+          signal,
+        });
+        console.log('IdleDetector is active.');
+      } catch (err) {
+        console.error(err.name, err.message);
+      }
+    }
+  </script>
+</body>
+</html>
